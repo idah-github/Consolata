@@ -1,0 +1,34 @@
+Registration/ login section
+credentials needed 
+ 
+ login category 
+
+sign up  - Employment number, email, first name , last name, password, confirm password, radio button to check whether you are an admin or a normal user. 
+login using - email, password
+
+
+Enquiries page -  users/ employees can add post relating to work environment
+Account management page - 
+update personal information
+application for leave  - forms  - leave status seen, approved 
+Salary management
+Emergency procedures
+
+Enquiries  section  - 
+1. query content
+2. The posting party
+3. timestamp
+
+events log - id, user_id, event-type, date
+
+1. form loan 
+2. Comments, must have post image of the posting party
+3. notifications -  for every post categorised asa notification to pop up in the top navbar 
+4. database table for user posts and the edit and delete functions
+
+
+
+
+
+
+

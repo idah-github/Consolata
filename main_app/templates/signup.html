@@ -1,0 +1,132 @@
+{%extends "base.html"%}
+{%block head%}
+<title>{{title}}</title>
+{{super()}}
+{%endblock%}
+{%block content%}
+{{super()}}
+<section class="">
+<div class="row container-fluid ">
+    <div class="col-lg-5 col-md-6 col-sm-8 m-auto">
+            <!-- Material form register -->
+<div class="card">
+
+    <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Sign up</strong>
+    </h5>
+
+    <!--Card content-->
+    <div class="card-body px-lg-5 pt-0">
+
+        <!-- Form -->
+        <form class="text-center" style="color: #757575;" action="signup" method="POST">
+            {{form.hidden_tag()}}
+            <div class="form-row">
+                <div class="col">
+                    <!-- First name -->
+                    <div class="md-form">
+                        {{form.first_name(class="form-control", autocomplete="off", id="materialRegisterFormFirstName")}}
+                        <label for="materialRegisterFormFirstName">First name</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <!-- Last name -->
+                    <div class="md-form">
+                        {{form.last_name(class="form-control",autocomplete="off", id="materialRegisterFormLastName")}}
+
+                        <label for="materialRegisterFormLastName">Last name</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- E-mail -->
+            <div class="md-form mt-0">
+                {{form.email(class="form-control", autocomplete="off", id="materialRegisterFormEmail")}}
+
+                <label for="materialRegisterFormEmail">E-mail</label>
+            </div>
+
+            <!-- Phone number -->
+            <div class="md-form">
+                {{form.phone_number(class="form-control", autocomplete="off", id="materialRegisterFormPhone")}}
+
+                <label for="materialRegisterFormPhone">Phone number</label>
+                <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                    Optional 
+                </small>
+            </div>
+            <!-- Phone number -->
+            <div class="md-form">
+                {{form.employee_id(class="form-control", autocomplete="off", id="materialRegisterFormId")}}
+
+                <label for="materialRegisterFormId">Employee Id</label>                 
+            </div>
+
+            <!-- Password -->
+            <div class="md-form">
+                {{form.password(class="form-control", autocomplete="off", id="materialRegisterFormPassword")}}
+
+                <label for="materialRegisterFormPassword">Password</label>
+                <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                    At least 7 characters and 1 digit
+                </small>
+            </div>
+            <!-- confirm password -->
+            <div class="md-form">
+                {{form.password(class="form-control", autocomplete="off", id="materialRegisterFormConfirmPassword")}}
+
+                <!-- <input type="password" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"> -->
+                <label for="materialRegisterFormConfirmPassword"> Confirm Password</label>
+                <small  class="form-text text-muted mb-4">
+                    Must match the password above
+                </small>
+            </div>
+
+            
+
+            <!-- Newsletter -->
+            <div class="form-check">
+
+                {{form.agreement(class="form-check-input", id="materialRegisterFormNewsletter")}}
+                <label class="form-check-label" for="materialRegisterFormNewsletter">Agree to our terms and conditions</label>
+            </div>
+
+            <!-- Sign up button -->
+            {{form.submit(class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0")}}
+
+            <!-- Social register -->
+            <p>or sign up with:</p>
+
+            <a type="button" class="btn-floating btn-fb btn-sm">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a type="button" class="btn-floating btn-tw btn-sm">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a type="button" class="btn-floating btn-li btn-sm">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a type="button" class="btn-floating btn-git btn-sm">
+                <i class="fab fa-github"></i>
+            </a>
+
+            <hr>
+
+            <!-- Terms of service -->
+            <p>By clicking
+                <em>Sign up</em> you agree to our
+                <a href="" target="_blank">terms of service</a>
+                </p>
+
+        </form>
+        <!-- Form -->
+
+    </div>
+
+</div>
+<!-- Material form register -->
+    </div>
+
+</div>
+</section>
+{%endblock%}

@@ -1,0 +1,104 @@
+
+{% extends 'base.html'%}
+{%block head %}
+{{super()}}
+<title> {{title}} </title>
+<link rel="stylesheet" href="{{url_for('static', filename='css/singlepage.css')}}">
+{%endblock%}
+{%block content%}
+    <div class="header-block container-fluid">
+
+    </div>
+    <div class="single-block container-fluid">
+
+        <div class="date-block">  
+             <span class=""> {{post['posted_on'].strftime("%d, %m, %Y")}} </span>
+             <br>
+             <br>
+             <i class="fas fa-arrow-alt-circle-down"></i>
+
+        </div>
+        <h3 class="single-post-title h5 text-center"> {{post['post_title']}} </h3>
+
+        <hr class="horizontal-line">
+        <div class="single-post-image" > 
+            <img src="../static/images/profiles/{{post['sender_image']}}" alt="" class="single-post-avatar"> 
+            <br>
+            <span> {{post['posted_by']}}</span>
+      </div>
+        <p class="single-post-body">
+            {{post['post_description']}}
+        </p>
+
+
+        <div class="container my-3 z-depth-1">
+
+
+            <!--Section: Content-->
+            <section class="dark-grey-text text-center px-md-5 py-3">
+          
+              <!-- Grid row -->
+              <div class="row">
+          
+                <!-- Grid column -->
+                <div class="col-lg-6 col-md-8 mx-auto">
+          
+                  <!-- Form -->
+                  <form class="" method="POST" action="{{url_for('add_comment', post_id = post['post_id'])}}">
+          
+                    <!-- Section heading -->
+                    <h3 class="font-weight-bold mb-4">Leave a Comment</h3>
+                    
+           
+          
+                      
+                                  <div class="form-group purple-border">
+                        <label for="exampleFormControlTextarea4">Comment</label>
+                        <textarea name="comment" class="form-control " id="exampleFormControlTextarea4" rows="3"  ></textarea>
+                      </div>
+                      
+          
+              
+                    <div>
+                         <button type="submit" class="btn btn-warning ">
+                           Send
+                        </button>
+                      </div>
+                    
+          
+                    
+                  </form>
+                  <!-- Form -->
+          
+                </div>
+                <!-- Grid column -->
+          
+              </div>
+              <!-- Grid row -->
+              
+            </section>
+            <!--Section: Content-->
+          
+          
+          </div>
+
+
+                    <h3 class="comments h3 text-center">  Comments</h3>
+                    {%for comment in comments%}
+        <div class="row d-flex w-75 mx-auto my-4   justify-content-evenly">
+            <div class="col-md-3 col-lg-4  py-3">
+                <img src="../static/images/profiles/{{comment['sender_profile']}}" alt="" class="single-post-avatar" >
+            </div>
+            <div class="col-md-7 col-lg-6 ">
+                <span class="comment"> By {{comment['posted_by']}}  on {{comment['posted_on'].strftime('%d, %m, %Y')}} </span> <br> <br>
+                <p class="actual-comment">
+                    {{comment['comment']}}
+                </p>
+            </div>
+        </div>
+        {%endfor%}
+
+    </div>
+
+
+{%endblock%}

@@ -1,0 +1,129 @@
+/* css file for the index page */
+
+
+/*  styling of Cards image avatar styling that is supposed to display the profile of the user  */
+/* main column css code */
+.main-column{
+position:relative;
+}
+
+
+#image-avatar{
+    width: 50px;
+    height: 50px;
+   /* position:absolute; */
+    /* transform:translateX(100%); */
+    border-radius: 50%;
+    
+}
+.main-card{
+    /* position: relative; */
+    /* width:  !important; */
+    margin: 10px 2%;
+}
+.card-footer{
+    border: 0 ;
+}
+.card-footer form{
+    padding: 0;
+    margin:0;
+
+}
+.card-footer input{
+    background-color: rgba(0, 0,0, 0.03);
+    width: 80%;
+    border:0 solid  white;
+}
+.custom-card-footer input:hover, .custom-card-footer input:focus,.card-footer input:hover{
+    background-color: rgba(0, 0,0, 0.03);
+    width: 80%;
+    border:0 solid  white;
+    outline: 0px solid none;
+    margin-block-end: none;
+    outline: none
+}
+.card-text{
+    height:90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin:0;
+}
+.custom-card-body{
+    margin:20px 0px;
+    height:auto !important;
+}
+.side-block{
+    width:100%;
+    height:150px;
+    padding:0px;
+    display:flex;
+    flex-direction:row;
+}
+
+.post-image-card{
+    height:250px;
+    position:relative;
+    width:100%;
+}
+.post-image-card img{
+    position:absolute;
+    width:100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+.number-div{
+    font-size:2.3rem;
+    flex:1;
+    height: 100%;
+    padding-top: 10%;
+
+}
+
+.text-div{
+    text-align: center;
+    flex:3;
+    font-weight: 300;
+    font-size:12px;
+    padding:5px; 
+    text-align: center 
+
+    
+}
+.text-div p{
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+
+}
+.pop-div{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+
+}
+.pop-image{
+    flex: 1;
+    position: relative;
+}
+.pop-image img{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:150px;
+
+}
+.pop-text{
+    flex: 1;
+    padding: 5px;
+    font-size:18px;
+    font-weight: 400;
+    text-align: center;
+
+}
+.pop-text p{
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}

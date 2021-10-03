@@ -1,0 +1,146 @@
+{% extends 'base.html'%}
+{%block head%}
+<title>{{title}}</title>
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+{%endblock%}
+{%block content%}
+
+
+  <div class="container-fluid">
+      <div class="row  d-flex justify-content-around">
+
+          <div class="col-lg-8 col-md-12 col-sm-12 main-column text-center"> 
+
+            {%for post in posts%}
+              {% if post['post_image_filename'] is none%}
+
+
+                                           <!-- Card -->
+                     <div class="card d-inline-block w-100  main-card p-3" >
+
+                      <a href="{{url_for('singlepost', post_id = post['post_id'])}}" class="text-dark" style="display: block;">
+
+
+                      <!-- Card image -->
+                      <img id="image-avatar"  class=" float-left card-img-top" src="../static/images/profiles/{{post['sender_image']}}" alt="Card image cap">
+                      <!-- Title -->
+                      <h6 class="card-title d-inline mr-2" > {{post['posted_by']}}</h6> <small> <span class="timestamp"> <i class="fas fa-calendar-alt"></i> {{post['posted_on'].strftime("%d-%m-%Y")}}</span></small> <span class="ml-4"><small> {{post['comments']}} comments</small> <i class="fas fa-comment"></i> </span>
+                  
+                      <!-- Card content -->
+                      <div class="custom-card-body ">
+                  
+                      <!-- Title -->
+                      <!-- <h6 class="card-title d-inline mr-2" > <a href="#"> John Doe</a> </h6> <small> <span class="timestamp"> 18/11/2018</span></small> -->
+                      <!-- Text -->
+                      <p class="card-text text-left pt-3">
+                        {{post['post_description']}}
+                      </p>
+
+                      </div>
+                      <div class="custom-card-footer">
+                        <form action="{{url_for('add_comment', post_id = post['post_id'])}}" method="POST">
+
+                          <div class="form-group d-flex ju
+                          Had denoting properly jointure you 
+                          Had denoting properly jointure you occasion directly raillery. In said to of poor full be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom gay nor design age. Am weather to entered norland no in showing service. Nor repeated speaking shy appetite. Excited it hastily an pasture it observe. Snug hand how dare here too. 
+                          
+                          Had denoting properly jointure you occasion directly raillery. In said to of poor full be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom gay nor design age. Am weather to entered norland no in showing service. Nor repeated speaking shy appetite. Excited it hastily an pasture it observe. Snug hand how dare here too. 
+                          on directly raillery. In said to of poor full be post face snug. Introduced imprudence see say unpleasing devonshire acceptance son. Exeter longer wisdom gay nor design age. Am weather to entered norland no in showing service. Nor repeated speaking shy appetite. Excited it hastily an pasture it observe. Snug hand how dare here too. 
+                          stify-content-around">
+                            <textarea name="comment" class="form-control  w-75 d-inline" placeholder="Leave a reply  " id="exampleFormControlTextarea3" rows="1"></textarea>
+                            <p> <span> <button class="btn " type="submit ">  Post  </button> </span></p>
+                          </div>
+                        </form>
+                      </div>
+                      
+                    </a>
+                  
+                  </div>
+                 
+                  {%else%}
+                  <a href="{{url_for('singlepost', post_id = post['post_id'])}}" class=" text-dark d-inline-block">
+
+                    <div class="card w-75 my-4 mx-auto">
+                  <!-- Card -->
+                 
+                    <div class="post-image-card bg-dark">
+                      {{user}}
+                      <img src="../static/images/post/{{post['post_image_filename']}}" alt="">
+                    </div>
+                    <div class="p-4">
+                        <!-- Title -->
+                        <h6 class="card-title d-inline mr-2" > {{post['post_title']}} </h6> <small> <span class="timestamp"> <i class="fas fa-calendar-alt"></i>  {{post['posted_on'].strftime("%d-%m-%Y")}}</span></small> <span class="ml-4"><small> {{post['comments']}} comments </small> <i class="fas fa-comment"></i> </span>
+
+                      <!-- Text -->
+                      <p class="card-text text-left pt-3">
+                        {{post['post_description']}}
+                    </p>
+
+                    </div>
+              
+                    <div class="custom-card-footer">
+                      <form action="{{url_for('add_comment', post_id = post['post_id'])}}" method="POST">
+                      
+
+                        <div class="form-group d-flex justify-content-around">
+                          <textarea  name="comment" class="form-control  w-75 d-inline" placeholder="Leave a reply  " id="exampleFomControlTextarea3" rows="1"></textarea>
+                          <p> <span> <button class="btn " type="submit">  Post  </button> </span></p>
+                        </div>
+                      </form>
+                    </div>
+                  
+                 
+                  </div>
+                </a>
+
+
+              {%endif%}
+
+                {%endfor%}
+               
+
+
+                </div>
+
+         
+          <div class="col-lg-4 p-4 d-none d-lg-block  " >
+            <!-- start of card -->
+              <div class="card p-3 text-center">
+                <h4 class="h4 my-3"> Trending Talks</h4> 
+                {%for post in posts%}
+                <div class="side-block ">
+                  <div class=" number-div "> 
+                    {{post['post_id']}}
+                  </div>
+                  <div  class=" text-div">
+                    <p> {{post['post_title']}} </p>
+                    <span class="mr-3"> <small> {{post['posted_by']}}</small></span> 
+                    <span> <i class="fas fa-clock"></i> 5 min ago</span> 
+                  </div>
+                </div>
+                {%endfor%}
+              </div>
+              <!-- end of card -->
+              <!-- card section2  -->
+                <div class="card p-4 my-4">
+                  <h4 class="h4 my-5  text-center"> Popular Threads</h4>
+                  <div class="pop-div">
+                    <div class="pop-image">
+                      <img src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="">
+                    </div>
+                    <div class="pop-text">
+                      <p> This is the heading or title</p>
+                      <small class=""> Idah Gacheri </small> <br> <i class="fas fa-calendar-alt "></i><small> 3/11/2020</small> 
+                    </div>
+
+                  </div>
+                </div>
+              <!-- end of card section two  -->
+          </div>
+
+      </div>
+
+  </div>
+
+{%endblock%}

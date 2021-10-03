@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+.page-container{
+    background-color: #fff;
+}
+.welcome-block{
+    background: #ad5389;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #3c1053, #ad5389);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #3c1053, #ad5389); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+width:95%;
+margin:10px auto;
+padding: 10px 20px;
+align-self: bottom;
+border-radius:28px;
+color: #fff;
+font-family: 'Raleway', sans-serif;
+
+}
+.user-avatars{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+}
+.large-col form{
+    width:50%;
+    
+
+}
+.image-icon{
+    width:80px;
+    height:80px;
+    border-radius: 50%;
+    margin:auto;
+}
+.user-card{
+    background: #fff;
+
+}
+.user-unordered-list{
+    list-style-type: none;
+    padding: 10px;
+
+}
+.capital-div{
+    background-color:#e8e8e8 ;
+}
+.complete-profile-div{
+    background-color:#fff;
+}
+
+.dropzone {
+    background: white;
+    border-radius: 5px;
+    border: 2px dashed rgb(0, 135, 247);
+    border-image: none;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.icon-container{
+    display:  inline-block;
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color:orange;
+    text-align: center;
+    
+  
+}
+.userdata-list{
+    display:block;
+    height:70px;
+    /* background-color:black; */
+    font-size:18px;
+
+}
+

@@ -1,0 +1,282 @@
+{% extends 'base.html'%}
+{%block head%}
+<title>{{title}}</title>
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/account.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/dropzone.css')}}">
+
+{%endblock%}
+{%block content%}
+<div class="container-fluid page-container">
+    <div class="row ">
+        <div class="col-md-3 event-card"></div>
+        <div class="col-md-3 event-card"></div>
+        <div class="col-md-3 event-card"></div>
+    </div>
+    <div class="alert  alert-dismissible fade show" role="alert">
+    <div class="row welcome-block">
+          <div class="d-inline"> <img src="../static/images/profiles/{{current_user.profile_picture}}" alt="" class="user-avatars"></div> <div class="ml-3 mt-md-3"> Hi <span class="text-warning bold"> {{current_user.first_name}}  {{current_user.last_name}} </span>  You have not completed your profile please update </div>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" class="text-danger">&times;</span>
+          </button>
+        
+    </div>
+</div>
+
+    <div class="row capital-div p-4">
+        <div class="col-md-8 large-col  ">
+            
+        <div class="card w-75 mx-auto my-4 p-4">
+            <h6 class="text-center h4"> Upload Profile Picture </h6>
+            <form action="{{url_for('account')}}" method="POST" enctype="multipart/form-data">
+                {{form.hidden_tag()}}
+                <div class="my-3 text-right">  <i class="fas fa-cloud-upload-alt fa-4x text-primary"></i> </div>
+                <div id="dnd" class="text-center my-3">
+                    
+                    {{form.profile_upload()}}
+                </div>
+               <div class="text-right">  <button type="submit" value="image_upload" name="submit" class="btn btn-info">Upload</button></div>
+
+            </form>
+        </div>
+
+                
+
+                  
+            
+            
+
+            <div class="mb-4 p-4 complete-profile-div">
+                <h3 class="h3 text-center"> Personal Information</h3>
+                <form class="m-auto border w-75 border-light p-5" action="{{url_for('account')}}" method="POST">
+                    <!--  First Name -->
+                    <input type="text" name="first_name" id="defaultSubscriptionFormPassword" class="form-control d-md-inline mr-md-5  w-25 mb-4" value="{{current_user.first_name}}" placeholder=" First Name">
+                   
+                    <!--  Last Name -->
+
+                    <input type="text" name="last_name" id="defaultSubscriptionFormPassword" class="form-control d-md-inline w-25 mb-4" value="{{current_user.last_name}}" placeholder=" Last Name">
+
+           
+                    <!--Department  -->
+                    <select required name="department" class="browser-default  custom-select form-control mb-4">
+                        <option selected>Department</option>
+                        <option value="laboratory">Laboratory</option>
+                        <option value="pharmacy">Pharmacy</option>
+                        <option value="physiotherapy">Physiotherapy</option>
+                        <option value="radiology">Radiology</option>
+                        <option value="health records">Health Records</option>
+                        <option value="chaplaincy">Chaplaincy</option>
+
+
+                      </select>
+
+                    <!-- Image Upload -->
+                    
+                      
+
+                    {% if current_user.role is  none
+                        %}
+                    <input type="text" name="role" required id=""  class="form-control mb-4" placeholder="Role">
+                        {%else%}
+                    <input type="text" name="role" required id=""  class="form-control mb-4" placeholder="Role" value="{{current_user.role}}">
+
+                        {%endif%}
+                    <!-- KRA Pin -->
+                    {% if current_user.kra_pin is  none%}
+                    <input type="number" name="kra_pin" required id="" class="form-control mb-4" placeholder="KRA Pin">
+
+                        {%else%}
+                        <input type="number" name="kra_pin" required id="" class="form-control mb-4" placeholder="KRA Pin" value="{{current_user.kra_pin}}">
+
+                        {%endif%}
+
+                    <!-- Id No -->
+                    <input type="number" name="id_no" required id="" class="form-control mb-4" placeholder="Id No">
+
+
+                    <!-- Phone Number  -->
+                    <input type="number" name="phone_number" required id="" class="form-control mb-4" placeholder="Phone Number i.e +254 700 000 000">
+
+                    <!-- DOB -->
+                    <input type="date" name="dob" required id="" class="form-control mb-4" placeholder="Date of birth">
+            
+            
+            
+            
+                    <!-- Email -->
+                    <input type="email"  name="email" required id="" class="form-control mb-4" value="{{current_user.email}}" placeholder="E-mail">
+            
+                    <!-- Sign in button -->
+                    <button class="btn btn-info btn-block" name="submit" value="updateinfo" type="submit">Update</button>
+            
+            
+                </form>
+                <!-- Default form subscription --> 
+            </div>
+
+            
+        <div class="card  my-4 mx-auto"> 
+            <h4 class="text-center h4 my-3"> Change Password</h4>
+                        <!-- Default form register -->
+            <form class="text-center border border-light w-75 mx-auto my-4 p-5" action="{{url_for('account')}}" method="POST">
+                {{updatepassword.hidden_tag()}}
+          
+                <!-- Old password -->
+                {{updatepassword.old_password(id="defaultRegisterFormEmail", class="form-control mb-4",placeholder="Old Password")}}
+                {% if updatepassword.old_password.errors %}
+                            <ul class="errors">
+                            {% for error in updatepassword.old_password.errors %}
+                                <li style="list-style-type: none;color: red;">{{ error }}</li>
+                            {% endfor %}
+                            </ul>
+                {% endif %}
+                <!-- New Password -->
+                {{updatepassword.new_password(id="defaultRegisterFormEmail", class="form-control mb-4",placeholder="New Password")}}
+                {% if updatepassword.new_password.errors %}
+                            <ul class="errors">
+                            {% for error in updatepassword.new_password.errors %}
+                                <li style="list-style-type: none;color: red;">{{ error }}</li>
+                            {% endfor %}
+                            </ul>
+                {% endif %}
+                <!--  Confirm Password -->
+                {{updatepassword.confirm_password(id="defaultRegisterFormEmail", class="form-control mb-4",placeholder="Confirm Password")}}
+
+
+              
+                <!-- Sign up button -->
+                <button class="btn btn-info my-4 btn-block" name="submit" value="change_password" type="submit">Change </button>
+
+               
+            </form>
+            <!-- End of change password Form -->
+
+        </div>
+        <div class="card">
+
+            <h4 class="h4 text-center"> My PaySlip </h4>
+            <table class="table">
+                <thead class="black white-text">
+                  <tr>
+                    <th scope="col">Earning</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Deductions</th>
+                    <th scope="col">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+
+                    <td class="h6">Basic Pay</td>
+                    <td>30,000</td>
+
+                    <td class="ml-1 h6">Tax</td>
+                    <td>10,000</td>
+                  </tr>
+                  <tr>
+                    <td class="h6">CCA</td>
+
+
+                    <td>5,000</td>
+                    <td class="ml-1 h6">NSSF</td>
+                    <td> 2,000</td>
+
+                  </tr>
+                  <tr>
+                    <td class="h6">Transport Allowances</td>
+
+
+                    <td>5,000</td>
+                    <td class="h6"> NHIF </td>
+                    <td> 3000</td>
+                  
+
+                  </tr>
+                  <tr>
+                    <td class="h6">House Allowance</td>
+                    <td>10000</td>
+                    <td class="h6"> Loan Repayment </td>
+                    <td> 5000</td>
+
+                   
+                  </tr>
+                  <tr>
+                    <td class="h6">overtime</td>
+                    <td>8,000</td>
+
+                   
+                  </tr>
+                  <tr>
+                    <td class="h6">Gross Income</td>
+                    <td class="h4">58,000</td>
+                    <td class="h6">Total Deductions</td>
+                    <td class="h4">20,000</td>
+
+                  </tr>
+                  <tr>
+                    <td class="h6">Net Pay</td>
+                    <td class="h4"></td>
+                    <td class="h6"></td>
+                    <td class="h4">38,000</td>
+
+                  </tr>
+                </tbody>
+              </table>
+              
+
+        </div>
+  
+        </div>
+        <div class="col-md-4 ">
+            <!-- user profile summary data -->
+            <div class="card user-card">
+                <div class="card-header">
+                    <div class="image-icon">
+                        <img src="../static/images/profiles/{{current_user.profile_picture}}" alt="" class="image-icon">
+                    </div>
+                    <div class="text-center"> {{current_user.first_name}} {{current_user.last_name}} </div>
+                </div>
+                <div class="card-body">
+                    
+                    <ul class="user-unordered-list">
+                        <li class="userdata-list py-2">  
+                        <div class="icon-container text-center py-3 mr-4"> <i class="fas fa-archway"></i>  </div>   <span>Department: </span> <span>{{current_user.department}} </span> 
+                        </li>
+
+                        <li class="userdata-list py-2">  
+                            <div class="icon-container text-center py-3 mr-4"> <i class="far fa-user"></i>  </div>   <span>Role: </span> <span>{{current_user.role}} </span> 
+                        </li>
+
+                        <li class="userdata-list py-2">  
+                            <div class="icon-container text-center py-3 mr-4"> <i class="fas fa-sort-numeric-up"></i>  </div>   <span>Employee ID: </span> <span>{{current_user.employee_id}} </span> 
+                        </li>
+                        <li class="userdata-list py-2">  
+                            <div class="icon-container text-center py-3 mr-4"> <i class="far fa-envelope"></i>  </div>   <span> <small> Mail: </small></span> <span class="overflow-hidden"> <small> {{current_user.email}}</small> </span> 
+                        </li>
+                        <li class="userdata-list py-2">  
+                            <div class="icon-container text-center py-3 mr-4"> <i class="fas fa-address-book"></i>  </div>   <span>Contact: </span> <span>0{{current_user.phone_number}} </span> 
+                        </li>
+                        <li class="userdata-list py-2">  
+                            <div class="icon-container text-center py-3 mr-4"> <i class="fas fa-certificate"></i>  </div>   <span>KRA pin: </span> <span>{{current_user.kra_pin}} </span> 
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+            <!--  Event Logs  -->
+            <div class="card my-3 p-4">
+                <h4 class="h4 text-center"> Events Log</h4>
+
+            </div>
+
+        </div>
+    </div>
+    
+</div>
+
+
+
+
+{%endblock%}
+<script src="{{url_for('static', filename='js/dropzone.js')}}"></script>
